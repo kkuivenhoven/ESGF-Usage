@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 from django.db import models
 from uuid import uuid4
 
@@ -145,6 +146,8 @@ class Session(models.Model):
     token = models.CharField(max_length=32)
 
 
+
+
 def generate_session_token():
     return uuid4()
 
@@ -195,5 +198,45 @@ class Error(models.Model):
 
     class Meta:
         db_table = u'error'
+
+
+class WorldRegionsRegion(models.Model):
+    name = models.CharField(max_length=25)
+    code = models.CharField(max_length=3)
+
+    class Meta:
+        managed = False
+        db_table = 'world_regions_region'
+
+
+
+class WorldRegionsRegioncountry(models.Model):
+    country = models.CharField(unique=True, max_length=2)
+    region_id = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'world_regions_regioncountry'
+
+
+class Sources(models.Model):
+    name = models.CharField(max_length=16)
+    version = models.CharField(max_length=64)
+
+    class Meta:
+        managed = False
+        db_table = 'sources'
+        unique_together = (('name', 'version'),)
+
+
+class Survey(models.Model):
+    satisfaction = models.IntegerField()
+    recommend_friends = models.IntegerField()
+    suggestions = models.CharField(max_length=140)
+    price_to_competitors = models.CharField(max_length=140)
+    price = models.CharField(max_length=140)
+    email = models.CharField(max_length=160)
+
+
 
 

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Regions and countries ESGF usage<br><p>&nbsp;&nbsp;&nbsp;Click the table headers to sort columns{% endblock title %}
+
+{% block content %}
+{% load staticfiles %}
+<!--http://freepages.genealogy.rootsweb.ancestry.com/~gearyfamily/expression-web/sort-table.html-->
+<!--https://kryogenix.org/code/browser/sorttable/#symbolsbeforesorting-->
+<!--script type="text/javascript" src="% static 'js/sorttable.js' %}"></script-->
+<script type="text/javascript" src="https://kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+<link href="{% static 'css/global_stats/table.css' %}" rel="stylesheet">
+
+<div class="col-sm-6">
+    <div class="table_scroll">
+        <table class="table table-striped table-bordered table-hover sortable" style="table-layout: fixed">
+            <tr>
+                <th class="active">Regions</th>
+                <th class="active"># of Unique Users</th>
+            </tr>
+            {% for key, value in regionDict.items %}
+                <tr>
+                    <td>{{key}}</td>
+                    <td>{{value}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+<div class="col-sm-6">
+    <div class="table_scroll">
+        <table class="table table-striped table-bordered table-hover sortable" style="table-layout: fixed">
+            <tr>
+                <th class="active">Countries</th>
+                <th class="active"># of Unique Users</th>
+            </tr>
+            {% for paiz in countryCount %}
+                <tr>
+                    <td>{{paiz.0}}</td>
+                    <td>{{paiz.1}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock content %}
+

@@ -1,47 +1,110 @@
+{% load staticfiles %}
+<head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css">
+<!--script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-<!-- JavaScript -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.min.js"></script>
+
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<!-- http://stackoverflow.com/questions/14720464/django-project-base-template -->
 
-<nav class="navbar navbar-default">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.2/js/bootstrap-select.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.2/css/bootstrap-select.min.css" type="text/css"/>
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="{% static 'css/base/footer.css' %}" rel="stylesheet">
+<link href="{% static 'css/base/social.css' %}" rel="stylesheet">
+
+<script type="text/javascript" src="{% static 'js/base/social.js' %}"></script>
+</head>
+<!-- http://stackoverflow.com/questions/14720464/django-project-base-template -->
+<!-- http://bootsnipp.com/snippets/featured/social-buttons-for-bootstrap -->
+<!-- http://lipis.github.io/bootstrap-social/ -->
+
+<nav role="navigation" class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <ul class="nav navbar-nav">
-                {% if user.is_authenticated %}
-                    <li><a href="/">Home</a></li>
-
-                    <li><a href="{% url 'statsPage.views.show_error_log' %}">Errors</a></li>
-                    <li><a href="{% url 'stats.views.log_event' %}">Add log</a></li>
-
-                    <li><a href="{% url 'statsPage.views.show_debug' %}">Debug</a></li>
-                    <li><a href="{% url 'statsPage.views.show_debug_error' %}">Debug Error</a></li>
-
-                    <li><a href="{% url 'admin:stats_user_changelist' %}">User Stats</a></li>
-                    <li><a href="{% url 'admin:stats_source_changelist' %}">Source Stats</a></li>
-                    <li><a href="{% url 'admin:stats_machine_changelist' %}">Machine Stats</a></li>
-                    <li><a href="{% url 'admin:stats_logevent_changelist' %}">Changelist Stats</a></li>
-                    <li><a href="{% url 'admin:stats_error_changelist' %}">Error Stats</a></li>
-                    <li><a href="{% url 'admin:stats_action_changelist' %}">Action Stats</a></li>
-
-                    <li><a href="{% url 'admin:sites_site_changelist' %}">Sites</a></li>
-
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
-                {% else %}
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/login">Login</a></li>
-                {% endif %}
-           </ul>
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle nav</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#" class="navbar-brand"><Brand</a>
         </div>
-    </div>
-</nav>
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+            {% if user.is_authenticated %}
+            <ul class="nav navbar-nav">
+                    <li class=""><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;Home</a></li>
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><span class="glyphicon glyphicon-map-marker"></span>&nbsp;Global Stats<b class="caret"></b></a>
+                        <ul role="menu" class="dropdown-menu">
+                           <li><a href="/world_stats/"><span class="glyphicon glyphicon-plane"></span>&nbsp;World Stats</a></li>
+                           <li><a href="/geo_stats/"><span class="glyphicon glyphicon-picture"></span>&nbsp;Geographical Stats</a></li>
+                           <li><a href="/table/"><span class="glyphicon glyphicon-list"></span>&nbsp;Table Stats</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;Organization Stats<b class="caret"></b></a>
+                        <ul role="menu" class="dropdown-menu">
+                           <li><a href="/organizations/"><span class="glyphicon glyphicon-level-up"></span>&nbsp;Organization Breakdown</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><span class="glyphicon glyphicon-signal"></span>&nbsp;Url Stats<b class="caret"></b></a>
+                        <ul role="menu" class="dropdown-menu">
+                           <li><a href="/nested_d3/"><span class="glyphicon glyphicon-text-background"></span>&nbsp;ESGF Url Breakdown</a></li>
+                           <li><a href="/nested_experiment/"><span class="glyphicon glyphicon-flash"></span>&nbsp;ESGF Experiment Breakdown</a></li>
+                           <li><a href="/nested_var/"><span class="glyphicon glyphicon-equalizer"></span>&nbsp;ESGF Variable Breakdown</a></li>
+                           <li><a href="/nested_timeFreq/"><span class="glyphicon glyphicon-hourglass"></span>&nbsp;ESGF Time Freq Breakdown</a></li>
+                        </ul>
+                    </li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/logout/"><span class="glyphicon glyphicon-pencil"></span>&nbsp;Logout</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/help/"><span class="glyphicon glyphicon-flag"></span>&nbsp;Help</a></li>
+            </ul>
+
+            {% else %}
+
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;Home</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/help/"><span class="glyphicon glyphicon-flag"></span>&nbsp;Help</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/login"><span class="glyphicon glyphicon-pencil"></span>&nbsp;Login</a></li>
+            </ul>
+            {% endif %}
+        </div>
+   </div>
+</nav> 
+
+<div class="jumbotron">
+    <h1>&nbsp;{% block title %}{% endblock title %} </h1>
+</div>
+ 
 
 <div class="container">
     {% block content %}
-
-
-
-
     {% endblock content %}
+</div>
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+
+<div class="navbar navbar-default navbar-fixed-bottom">
+    <a href="https://esgf.llnl.gov/index.html">
+        <img class="pull-left" id="footer_img" src="https://esgf.llnl.gov/media/images/esgfSmall.png"></img>
+    </a>&nbsp;
+    <a href="https://github.com/esgf" class="btn btn-social-icon btn-lg btn-github"><i class="fa fa-github"></i></a>
 </div>

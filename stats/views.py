@@ -136,6 +136,11 @@ def log_event(request, returnLogObject=False):
     '''
     Creates a LogEvent.
     '''
+    print "            "
+    print ";LKASJDF;LKAJSDF;LKJADSF"
+    print "            "
+    print request
+    print "            "
     if request.method != "POST":
         return HttpResponseBadRequest("POST Only")
 

@@ -111,6 +111,8 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'twitter_bootstrap',
     'django_extensions',
+    'world_regions',
+    'fontawesome',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )

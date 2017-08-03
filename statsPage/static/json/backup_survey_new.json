@@ -1,0 +1,754 @@
+{
+ "pages": [
+  {
+   "elements": [
+    {
+     "type": "checkbox",
+     "choices": [
+      {
+       "value": "linux",
+       "text": "Linux"
+      },
+      {
+       "value": "darwin",
+       "text": "Darwin"
+      },
+      {
+       "value": "windows",
+       "text": "Windows"
+      }
+     ],
+     "isRequired": true,
+     "name": "favoriteOs",
+     "title": "Which OS do you use CDAT with?"
+    },
+    {
+     "type": "radiogroup",
+     "choices": [
+      {
+       "value": "no",
+       "text": "No"
+      },
+      {
+       "value": "yes",
+       "text": "Yes"
+      }
+     ],
+     "choicesOrder": "desc",
+     "isRequired": true,
+     "name": "packageUsage",
+     "title": "Do you use the whole data package or a subset?"
+    },
+    {
+     "type": "checkbox",
+     "choices": [
+      "cdutil",
+      "genutil",
+      "vcs",
+      {
+       "value": "cdp",
+       "text": "CDP"
+      },
+      "cdms2"
+     ],
+     "name": "subPackageUsage",
+     "title": "Which sub-packages do you have installed?",
+     "visible": false,
+     "visibleIf": "{packageUsage}='0'"
+    },
+    {
+     "type": "comment",
+     "isRequired": true,
+     "name": "Improvements",
+     "title": "Please provide a few suggestions on how the UV-CDAT system could be improved to better suit your needs:"
+    },
+    {
+     "type": "radiogroup",
+     "choices": [
+      {
+       "value": "1",
+       "text": "Everyday"
+      },
+      {
+       "value": "2",
+       "text": "A few times a week"
+      },
+      {
+       "value": "3",
+       "text": "Every couple weeks"
+      },
+      {
+       "value": "4",
+       "text": "Once a month"
+      },
+      {
+       "value": "5",
+       "text": "Every couple months"
+      }
+     ],
+     "isRequired": true,
+     "name": "Cdat_Usage",
+     "title": "How often do you use CDAT?"
+    },
+    {
+     "type": "checkbox",
+     "choices": [
+      {
+       "value": "climate",
+       "text": "Climate"
+      },
+      {
+       "value": "weather",
+       "text": "Weather"
+      },
+      {
+       "value": "biology",
+       "text": "Biology"
+      },
+      {
+       "value": "astronomy",
+       "text": "Astronomy"
+      },
+      {
+       "value": "otherUses",
+       "text": "Other"
+      }
+     ],
+     "name": "cdatUsedFor",
+     "title": "What do you use CDAT for?"
+    },
+    {
+     "type": "comment",
+     "isRequired": true,
+     "name": "cdatUSEDfreeRESPONSE",
+     "title": "Please explain what else you use CDAT for.",
+     "visible": false,
+     "visibleIf": "{cdatUsedFor} = 'otherUses'"
+    },
+    {
+     "type": "comment",
+     "isRequired": true,
+     "name": "fileFormat",
+     "title": "Is there any file format you would like to see?"
+    }
+   ],
+   "name": "page1"
+  },
+  {
+   "elements": [
+    {
+     "type": "radiogroup",
+     "choices": [
+      {
+       "value": "veryEasy",
+       "text": "Very Easy"
+      },
+      {
+       "value": "easy",
+       "text": "Easy"
+      },
+      {
+       "value": "moderate",
+       "text": "Moderate"
+      },
+      {
+       "value": "difficult",
+       "text": "Difficult"
+      },
+      {
+       "value": "veryDifficult",
+       "text": "Very Difficult"
+      }
+     ],
+     "isRequired": true,
+     "name": "installationProcess",
+     "title": "The installation process was..."
+    },
+    {
+     "type": "comment",
+     "name": "question2",
+     "title": "Please explain what was difficult in regards to the installation process.",
+     "visible": false,
+     "visibleIf": "({installationProcess} = 'veryDifficult' or {installationProcess} = 'difficult')"
+    },
+    {
+     "type": "html",
+     "html": "Please file a github <a href='https://github.com/UV-CDAT/uvcdat/issues'>issue</a> with images and examples as well.",
+     "name": "htmlgithub",
+     "visibleIf": "({installationProcess} = 'veryDifficult' or {installationProcess} = 'difficult')"
+    },
+    {
+     "type": "radiogroup",
+     "choices": [
+      {
+       "value": "yes",
+       "text": "Yes"
+      },
+      {
+       "value": "no",
+       "text": "No"
+      }
+     ],
+     "isRequired": true,
+     "name": "useOnWindows",
+     "title": "Would you use CDAT under Windows?"
+    },
+    {
+     "type": "html",
+     "html": "Note: this is possible, find out more <a href='https://github.com/UV-CDAT/uvcdat/wiki/CDAT-under-windows'>here</a>.",
+     "name": "windowhtml"
+    },
+    {
+     "type": "radiogroup",
+     "choices": [
+      {
+       "value": "yes",
+       "text": "Yes"
+      },
+      {
+       "value": "no",
+       "text": "No"
+      }
+     ],
+     "isRequired": true,
+     "name": "python3compatible",
+     "title": "Would you use a Python 3 compatible version?"
+    },
+    {
+     "type": "radiogroup",
+     "choices": [
+      {
+       "value": "dataio",
+       "text": "Data I/O"
+      },
+      {
+       "value": "graphics",
+       "text": "Graphics"
+      },
+      {
+       "value": "analysis",
+       "text": "Analysis"
+      }
+     ],
+     "colCount": 3,
+     "isRequired": true,
+     "name": "mostUsed",
+     "title": "Which area of CDAT do you use most often?"
+    },
+    {
+     "type": "checkbox",
+     "choices": [
+      "cdms2",
+      "vcs",
+      "cdutil",
+      {
+       "value": "vcsAddOns",
+       "text": "vcsaddons"
+      },
+      "genutil",
+      {
+       "value": "otherPackages",
+       "text": "other"
+      }
+     ],
+     "colCount": 3,
+     "isRequired": true,
+     "name": "cdatPackages",
+     "title": "Which packages of CDAT do you use most often?"
+    },
+    {
+     "type": "comment",
+     "name": "otherExplained",
+     "title": "What other parts of CDAT do you use most often that are not listed above?",
+     "visible": false,
+     "visibleIf": "{cdatPackages} = 'otherPackages' "
+    }
+   ],
+   "name": "page2"
+  },
+  {
+   "elements": [
+    {
+     "type": "checkbox",
+     "choices": [
+      {
+       "value": "ascii",
+       "text": "Ascii"
+      },
+      {
+       "value": "binary",
+       "text": "Binary"
+      },
+      {
+       "value": "netcdf",
+       "text": "NetCDF"
+      },
+      {
+       "value": "hdf4",
+       "text": "HDF 4"
+      },
+      {
+       "value": "hdf5",
+       "text": "HDF 5"
+      },
+      {
+       "value": "hdfEos",
+       "text": "HDF EOS"
+      },
+      {
+       "value": "pp",
+       "text": "PP"
+      },
+      {
+       "value": "grads",
+       "text": "GrADS"
+      },
+      {
+       "value": "grib",
+       "text": "GRIB"
+      },
+      {
+       "value": "grib2",
+       "text": "GRIB2"
+      },
+      {
+       "value": "otherFormat",
+       "text": "Other"
+      }
+     ],
+     "colCount": 3,
+     "isRequired": true,
+     "name": "dataFileFormat",
+     "title": "What type of data file format do you use?"
+    },
+    {
+     "type": "comment",
+     "name": "theOtherFormat",
+     "title": "What other types of data file formats do you use?",
+     "visible": false,
+     "visibleIf": "{dataFileFormat} = 'otherFormat' "
+    },
+    {
+     "type": "radiogroup",
+     "choices": [
+      {
+       "value": "kilobytes",
+       "text": "Kilobytes"
+      },
+      {
+       "value": "megabytes",
+       "text": "Megabytes"
+      },
+      {
+       "value": "terabytes",
+       "text": "Terabytes"
+      },
+      {
+       "value": "petabytes",
+       "text": "Petabytes"
+      }
+     ],
+     "colCount": 4,
+     "isRequired": true,
+     "name": "sizeOfDataFiles",
+     "title": "How large are your data files?"
+    },
+    {
+     "type": "radiogroup",
+     "choices": [
+      {
+       "value": "climateAndForecast",
+       "text": "Climate and Forecast (CF)"
+      },
+      {
+       "value": "coords",
+       "text": "Coords"
+      },
+      {
+       "value": "otherConv",
+       "text": "Other"
+      }
+     ],
+     "colCount": 3,
+     "isRequired": true,
+     "name": "dataFormatConvention",
+     "title": "What data file format convention do you use?"
+    },
+    {
+     "type": "comment",
+     "name": "theOtherDataFormatConvention",
+     "title": "What other types of data file format conventions do you use?",
+     "visible": false,
+     "visibleIf": "{dataFormatConvention} = 'otherConv' "
+    },
+    {
+     "type": "checkbox",
+     "choices": [
+      {
+       "value": "ncl",
+       "text": "NCL"
+      },
+      {
+       "value": "matplotlib",
+       "text": "MatPlotLib"
+      },
+      {
+       "value": "ferret",
+       "text": "Ferret"
+      },
+      {
+       "value": "grads",
+       "text": "GrADS"
+      },
+      {
+       "value": "idl",
+       "text": "IDL"
+      },
+      {
+       "value": "visit",
+       "text": "VisIT"
+      },
+      {
+       "value": "r",
+       "text": "R"
+      },
+      {
+       "value": "otherTools",
+       "text": "Other"
+      }
+     ],
+     "colCount": 4,
+     "isRequired": true,
+     "name": "otherTools",
+     "title": "What other tools do you use to do analysis and visualization?"
+    },
+    {
+     "type": "comment",
+     "name": "theOtherToolsUsed",
+     "title": "What other other tools do you use to do analysis and visualization besides the ones listed above?",
+     "visible": false,
+     "visibleIf": "{otherTools} = 'otherTools' "
+    },
+    {
+     "type": "radiogroup",
+     "choices": [
+      {
+       "value": "minute",
+       "text": "Minute"
+      },
+      {
+       "value": "5minutes",
+       "text": "5 minutes"
+      },
+      {
+       "value": "10minutes",
+       "text": "10 minutes"
+      },
+      {
+       "value": "30minutes",
+       "text": "30 minutes"
+      },
+      {
+       "value": "1hour",
+       "text": "1 hour"
+      },
+      {
+       "value": "more1hour",
+       "text": "> 1 hour"
+      },
+      {
+       "value": "1day",
+       "text": "1 day"
+      },
+      {
+       "value": "more1day",
+       "text": "> 1 day"
+      }
+     ],
+     "colCount": 4,
+     "isRequired": true,
+     "name": "averageTimeToPlot",
+     "title": "How long does it take you on average to make a plot?"
+    },
+    {
+     "type": "comment",
+     "isRequired": true,
+     "name": "analysisAverageLength",
+     "title": "How long on average does it take you to do analysis?"
+    },
+    {
+     "type": "checkbox",
+     "choices": [
+      {
+       "value": "1d",
+       "text": "1D/Line Plot"
+      },
+      {
+       "value": "3dScalar",
+       "text": "3D Scalar"
+      },
+      {
+       "value": "3dvector",
+       "text": "3D Vector"
+      },
+      "Boxfill",
+      "Isofill",
+      "Isoline",
+      "Meshfill",
+      "Overlay",
+      {
+       "value": "otherGraphics",
+       "text": "Other"
+      },
+      {
+       "value": "plotEnhancements",
+       "text": "Plot Enhancements"
+      },
+      "Primitives",
+      "Projections",
+      "Vector"
+     ],
+     "colCount": 4,
+     "isRequired": true,
+     "name": "graphicsMostUsed",
+     "title": "Which graphics do you use the most?"
+    },
+    {
+     "type": "comment",
+     "isRequired": true,
+     "name": "otherVizGraphics",
+     "title": "Is there any visualization/graphics you would like to see?"
+    }
+   ],
+   "name": "page3"
+  },
+  {
+   "elements": [
+    {
+     "type": "radiogroup",
+     "choices": [
+      {
+       "value": "extremelyUseful",
+       "text": "Extremely useful"
+      },
+      {
+       "value": "useful",
+       "text": "Useful"
+      },
+      {
+       "value": "modUseful",
+       "text": "Moderately useful"
+      },
+      {
+       "value": "notUseful",
+       "text": "Not useful at all"
+      }
+     ],
+     "isRequired": true,
+     "name": "docUsefulness",
+     "title": "How useful is the documentation?"
+    },
+    {
+     "type": "comment",
+     "name": "docsNotUseful",
+     "title": "If the documentation is not useful at all, please indicate how you are learning this.",
+     "visibleIf": "{docUsefulness} = 'notUseful'"
+    },
+    {
+     "type": "radiogroup",
+     "choices": [
+      {
+       "value": "extremelyUseful",
+       "text": "Extremely useful"
+      },
+      {
+       "value": "useful",
+       "text": "Useful"
+      },
+      {
+       "value": "modUseful",
+       "text": "Moderately useful"
+      },
+      {
+       "value": "notUseful",
+       "text": "Not useful at all"
+      }
+     ],
+     "isRequired": true,
+     "name": "galleryUsefulness",
+     "title": "How useful is the gallery?"
+    },
+    {
+     "type": "comment",
+     "name": "galleryIndication",
+     "title": "If the gallery is not useful at all, please indicate why.",
+     "visibleIf": "{galleryUsefulness} = 'notUseful'"
+    },
+    {
+     "type": "radiogroup",
+     "choices": [
+      {
+       "value": "extremelyUseful",
+       "text": "Extremely useful"
+      },
+      {
+       "value": "useful",
+       "text": "Useful"
+      },
+      {
+       "value": "modUseful",
+       "text": "Moderately useful"
+      },
+      {
+       "value": "notUseful",
+       "text": "Not useful at all"
+      }
+     ],
+     "isRequired": true,
+     "name": "youTubeVideos",
+     "title": "How useful are the YouTube videos?"
+    },
+    {
+     "type": "comment",
+     "name": "YouTubeIndication",
+     "title": "If the YouTube videos are not useful at all, please indicate other methods of learning.",
+     "visibleIf": "{youTubeVideos} = 'notUseful'"
+    },
+    {
+     "type": "comment",
+     "isRequired": true,
+     "name": "whichFeature",
+     "title": "Which feature of UV-CDAT do you find most difficult to use, and/or you think needs the most improvement?\n"
+    },
+    {
+     "type": "radiogroup",
+     "choices": [
+      {
+       "value": "veryEasy",
+       "text": "Very Easy"
+      },
+      {
+       "value": "easy",
+       "text": "Easy"
+      },
+      {
+       "value": "moderate",
+       "text": "Moderate"
+      },
+      {
+       "value": "difficult",
+       "text": "Difficult"
+      },
+      {
+       "value": "veryDifficult",
+       "text": "Very Difficult"
+      }
+     ],
+     "isRequired": true,
+     "name": "guiUsefulness",
+     "title": "How useful is the UV-CDAT GUI interface?"
+    },
+    {
+     "type": "comment",
+     "isRequired": true,
+     "name": "GUIdislikeLike",
+     "title": "What do you like and dislike about it?"
+    }
+   ],
+   "name": "page4"
+  },
+  {
+   "elements": [
+    {
+     "type": "radiogroup",
+     "choices": [
+      {
+       "value": "veryEasy",
+       "text": "Very Easy"
+      },
+      {
+       "value": "easy",
+       "text": "Easy"
+      },
+      {
+       "value": "moderate",
+       "text": "Moderate"
+      },
+      {
+       "value": "difficult",
+       "text": "Difficult"
+      },
+      {
+       "value": "veryDifficult",
+       "text": "Very Difficult"
+      }
+     ],
+     "isRequired": true,
+     "name": "comndLineInterface",
+     "title": "How useful is the UV-CDAT command line interface?"
+    },
+    {
+     "type": "comment",
+     "isRequired": true,
+     "name": "cmndlineDislikeLike",
+     "title": "What do you like and dislike about the command line interface?"
+    },
+    {
+     "type": "radiogroup",
+     "choices": [
+      {
+       "value": "veryUseful",
+       "text": "Very useful"
+      },
+      {
+       "value": "useful",
+       "text": "Useful"
+      },
+      {
+       "value": "moderatelyUseful",
+       "text": "Moderately useful"
+      },
+      {
+       "value": "notAtAllUseful",
+       "text": "Not at all useful"
+      }
+     ],
+     "isRequired": true,
+     "name": "userSupportUsefulness",
+     "title": "How useful is the user support?"
+    },
+    {
+     "type": "radiogroup",
+     "choices": [
+      {
+       "value": "lessThanHour",
+       "text": "< 1 hour"
+      },
+      {
+       "value": "day",
+       "text": "1 day"
+      },
+      {
+       "value": "week",
+       "text": "A week"
+      },
+      {
+       "value": "more",
+       "text": "> a week"
+      }
+     ],
+     "isRequired": true,
+     "name": "responseTime",
+     "title": "What is the average response time for user support?"
+    },
+    {
+     "type": "comment",
+     "isRequired": true,
+     "name": "additionalConcerns",
+     "title": "Is there something we should have asked that concerns you about UV-CDAT that we didn't cover?"
+    }
+   ],
+   "name": "page5"
+  }
+ ]
+}

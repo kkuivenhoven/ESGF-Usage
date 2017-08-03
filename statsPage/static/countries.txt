@@ -1,0 +1,70 @@
+""
+india
+australia
+austria
+bangladesh
+belgium
+india
+brazil
+canada
+china
+chile
+china
+usa
+croatia
+czech republic
+ democratic people's republic of"
+estonia
+ethiopia
+france
+france
+germany
+china
+india
+indonesia
+iran
+israel
+india
+jamaica
+japan
+korea
+india
+metropolitan
+uruguay
+nepal
+new zealand
+nigeria
+norway
+usa
+orange
+pakistan
+philippines
+ecuador
+germany
+province of china
+republic of
+russia
+saudi arabia
+china
+south
+south africa
+spain
+sri lanka
+status_code
+sweden
+switzerland
+taiwan
+iran
+india
+thailand
+the united kingdom
+tokyo
+united kingdom
+united republic of
+united states
+united states
+united states
+vietnam
+china
+japan
+1

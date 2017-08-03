@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}ESGF Analytics<br><p>&nbsp;&nbsp;&nbsp;&nbsp;Help</p>{% endblock title %}
+
+{% block content %}
+{% load staticfiles %}
+<link href="{% static 'css/help/help.css' %}" rel="stylesheet">
+
+<div class="container">
+    <center>
+
+      <!--p id="reasoning">
+        It is important for the developers of ESGF to collect usage data for a multitude of reasons. These reasons range from improving the customer experience to allowing the developers to fine tune which functions are popular and which functions are not. This allows the developers to better prioritize their time and improves the ESGF tool for better functionality and overall user experience. In other words, the developer will know which functions are popular enough to expand and improve upon for the ultimate user experience. Another reason is that it will allow developers to discover patterns when there are bug crashes – thus, developers will be able to fix issues with ESGF faster because they’ll know precisely where the issue lies. These tools within ESGF provide synergistic approaches to climate modeling, allowing researchers to quickly evaluate Earth system science output. 
+        </p-->
+
+        <p id="help_page">
+            Please contact our support team at 
+                <a href="mailto:esgf-user@llnl.gov">esgf-user@llnl.gov</a>
+            if you have any questions, concerns, or comments.
+            <br>
+            You can also visit the ESGF AskBot Page at 
+            <a href="http://askbot.esgf.org">http://askbot.esgf.org</a> 
+            for other support resources.
+        </p>
+    </center>
+</div>
+        
+
+{% endblock content %}

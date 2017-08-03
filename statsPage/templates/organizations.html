@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+
+{% block title %}Organizations using ESGF<br><p>&nbsp;&nbsp;&nbsp;&nbsp;The organizations that use ESGF</p>{% endblock title %}
+
+{% block content %}
+{% load staticfiles %}
+<link href="{% static 'css/organizations.css' %}" rel="stylesheet">
+<head>
+    <script type="text/javascript">
+        var que;
+        window.onload = function(){
+            if(que != "true"){
+                document.getElementById("tooltip").style.display = "none";
+                que = "true";
+            }
+        }
+    </script>
+</head>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+<!--div id="testing">in place</div-->
+<div id="tooltip" style="hidden">
+    <p><span id="value"></span></p>
+</div>
+<div id="mostUsed_chart"></div>
+
+
+<script>
+
+      (function(d3) {
+        'use strict';
+
+        var dataset = {{orgCount|safe}};
+
+        var width = 1600;
+        var height = 1000;
+        //var height = 5750;
+        var pieHeight = 875;
+        //var pieHeight = 500;
+        //var radius = Math.min(width, height) / 2;
+        var radius = Math.min(width, pieHeight) / 2;
+        //var donutWidth = 75;
+        var donutWidth = 200;
+        // var legendRectSize = 18;
+        var legendRectSize = 10;
+        var legendSpacing = 4;
+        var legVal = 100;
+
+        //var color = d3.scaleOrdinal(d3.schemeCategory20b);
+        var color = d3.scaleOrdinal(d3.schemeCategory20b);
+
+        var svg = d3.select('#mostUsed_chart')
+          .append('svg')
+          .attr('width', width)
+          .attr('height', height)
+          .append('g')
+          .attr('transform', 'translate(' + (width / 2) +
+            ',' + (height / 2) + ')');
+
+        var arc = d3.arc()
+          .innerRadius(radius - donutWidth)
+          .outerRadius(radius);
+
+        var pie = d3.pie()
+          .value(function(d) { return d.count; });
+          //.sort(function(d) { return d.count; });
+          //.sort(null);
+
+        var total = 0;
+        for(var i = 0; i < dataset.length; i++){
+            total += dataset[i]['count'];
+        }
+
+        var nameNum = new Array();
+        var path = svg.selectAll('path')
+          .data(pie(dataset))
+          .enter()
+          .append('path')
+          .attr('d', arc)
+          .attr('fill', function(d) {
+            var nested = new Array();
+            nested.push(d.data.label);
+            nested.push(d.value);
+            nested.push(d.data.label.length);
+            nameNum.push(nested);
+            //console.log(d.data.label);
+            //console.log(d.value);
+            return color(d.data.label);
+          })
+          .on('mouseover', function (d) {
+                d3.select('#tooltip')
+                    .style('display', 'block')
+                    .style('left', d3.event.pageX + 'px')
+                    .style('top', d3.event.pageY + 'px')
+                    .style('opacity', 1)
+                    .select('#value')
+                    .text(d.data.label + ": " + (((d.value)/total)*100).toFixed(2) + "%");
+           })
+          .on('mouseout', function () {
+              d3.select('#tooltip')
+                  .style('opacity', 0);;
+          });
+
+
+
+        var legend = svg.selectAll('.legend')                     
+          .data(color.domain())                                  
+          .enter()                                              
+          .append('g')                                          
+          .attr('class', 'legend')                              
+          .attr('transform', function(d, i) {                   
+            var height = legendRectSize + legendSpacing;        
+            var offset =  height * color.domain().length / 2;  
+            var horz = -2 * legendRectSize;                   
+            var vert = i * height - offset;                   
+            return 'translate(' + (-775) + ',' + vert + ')';  
+          });                                                
+
+        legend.append('rect')                               
+          .attr('width', legendRectSize)                   
+          .attr('height', legendRectSize)                   
+          .style('fill', color)                             
+          .style('stroke', color);                          
+
+        var txtVals = new Array()
+        legend.append('text')                              
+          .attr('x', legendRectSize + 40)      
+          .attr('y', legendRectSize - legendSpacing)     
+          .text(function(d) { 
+                console.log(typeof(d.length));
+                txtVals.push(d.length);
+                return d; }
+            );             
+
+        console.log(txtVals);
+        var theMax = Math.max.apply(Math, txtVals);
+        console.log(theMax);
+        theMax = theMax*6;
+        console.log(nameNum);
+
+        
+
+        legend.append('text')                              
+          .attr('x', legendRectSize + legendSpacing)      
+          .attr('y', legendRectSize - legendSpacing)     
+          .text(function(d) { 
+                for(var i=0; i < nameNum.length; i++){
+                    if(nameNum[i][0] == d){
+                        return nameNum[i][1];
+                    }
+                }
+           });             
+
+      })(window.d3);
+
+</script>
+
+{% endblock content %}
