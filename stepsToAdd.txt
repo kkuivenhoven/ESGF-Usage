@@ -2,10 +2,11 @@ Steps To Add Additional Data to ESGF Analytics
 1.      Copy aims3.access.logs and users.csv to home directory
 2.      Convert aims3.access.logs to a csv file (I called it aims3Access.csv)
 3.      Change user_id to openid
-4.      Run this command: csvjoin –c openid aims3Access.csv users.csv > joined.csv
-5.      Copy joined.csv into the static directory in statsPage, i.e.: cp joined.csv Esgf_first/usage/statsPage/static/csv/joined.csv
-6.      In statsPage/views.py, use Python commands to open joined.csv and append each row into a list
-7.      After each row has been appended to a list, say the list is called csvRows, then iterate through csvRows and append the necessary array indices to a dictionary. 
-8.      Append each dictionary to a list so that you have a list of nested dictionaries. 
-9.      Run a json.dumps on the list prior to passing the list to the D3 JS javascript in the template
+4.      Run this command: pip install csvkit
+5.      Run this command: csvjoin –c openid aims3Access.csv users.csv > joined.csv
+6.      Copy joined.csv into the static directory in statsPage, i.e.: cp joined.csv Esgf_first/usage/statsPage/static/csv/joined.csv
+7.      In statsPage/views.py, use Python commands to open joined.csv and append each row into a list
+8.      After each row has been appended to a list, say the list is called csvRows, then iterate through csvRows and append the necessary array indices to a dictionary. 
+9.      Append each dictionary to a list so that you have a list of nested dictionaries. 
+10.      Run a json.dumps on the list prior to passing the list to the D3 JS javascript in the template
 
